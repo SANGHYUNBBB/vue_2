@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>파일명</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>v-model</h1>
+      <article>
+        <h2>1. 기본 폼 요소 바인딩</h2>
+        <input type="text" v-model="message" />
+        <p>입력한 값 - {{message}}</p>
+      </article>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="text/javascript">
+      const { createApp } = Vue;
+
+      let vm = createApp({
+        name: 'App',
+        data() {
+          return {
+            message: '초기값',
+          };
+        },
+      });
+      vm.mount('#app');
+    </script>
+  </body>
+</html>

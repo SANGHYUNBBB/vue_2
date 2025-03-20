@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>파일명</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>v-bind 디렉티브</h1>
+      <article>
+        <h2>1. 기본 속성 바인딩</h2>
+        <img :src="imageUrl" alt="이미지" />
+      </article>
+      <article>
+        <h2>2. 링크 주소 바인딩</h2>
+        <a :href="url" target="_blank">네이버 이동</a>
+      </article>
+      <article>
+        <h2>3. 클래스와 스타일 바인딩</h2>
+        <div :class="[activeClass, errClass]">내용</div>
+        <!-- 두 개 이상의 바인딩은 사용 불가능. 두개 영역의 클래스로 
+        지정할때는 대괄호 안의 쉼표로!! -->
+        <div :class="[isActive ? activeClass: '', errClass]">내용 2</div>
+      </article>
+      <article>
+        <h2>4. 인라인 스타일 바인딩</h2>
+        <div :style="{color: color1, fontSize:fontSize+'px'}">내용 4</div>
+        <!--
+         적용시 밑의 blue 와 fontsize 가 함께 적용된 것을 볼 수 있음.
+          -->
+      </article>
+      <article>
+        <h2>5. 폼 요소의 속성 바인딩</h2>
+        <!-- 여기 요소들, 라디오, 체크, 작성공간 등등을 폼이라고
+         일컬음 -->
+        <input
+          :type="inputType"
+          :placeholder="placeholderText"
+          :required="isRequired"
+        />
+        <!-- 데이터 동적으로 관리하겠다! 그러면 : 붙이고 vue로!!!!!  -->
+      </article>
+      <article>
+        <h2>6. select요소의 바인딩</h2>
+        <select :value="selected">
+          <option
+            v-for="option in options"
+            :value="option.value"
+            :key="option.id"
+          >
+            {{option.text}}
+            <!-- innerHTML은 {{}} -->
+          </option>
+        </select>
+      </article>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="text/javascript">
+      const { createApp } = Vue;
+
+      let vm = createApp({
+        name: 'App',
+        data() {
+          return {
+            message: '',
+            // 속성 바인딩
+            imageUrl: 'https://picsum.photos/100/100',
+            // 링크주소 바인딩
+            url: 'https//naver.com',
+            //클래스 바인딩
+            // isActive 클래스를 false로 설정시 반영되지 않는 것을
+            // 볼 수 있음.;
+            isActive: true,
+            activeClass: 'active',
+            errClass: 'text-danger',
+            //인라인 스타일
+            color1: 'blue',
+            fontSize: '50',
+            //폼요소 속성 바인딩
+            inputType: 'text',
+            placeholderText: '아무거나 입력하세요',
+            isInputDisable: false,
+            isRequired: false,
+            //select 요소 바인딩
+            selected: 'text1',
+            options: [
+              { id: 1, value: 'text1', text: '텍스트1' },
+              { id: 2, value: 'text2', text: '텍스트2' },
+              { id: 3, value: 'text3', text: '텍스트3' },
+            ],
+            //배열안의 객체스타일로 되어 있는 경우가 많음.
+            // 배열안에 primitive 형태로 있을 수 있지만
+            //객체 형태가 더 많다.
+          };
+        },
+      });
+      vm.mount('#app');
+    </script>
+  </body>
+</html>

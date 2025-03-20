@@ -63,3 +63,13 @@ message에서 렌더링이 진행되기 전까지 적용이 안되는 것을 확
 </code></pre>
 
 html directive는 관리자 용도로만 사용하는 것이 적합함.
+
+## 03.html
+
+- https://picsum.photos/ 랜덤 사진 사이트.
+
+![alt text](image-5.png)
+![alt text](image-6.png)
+![alt text](image-4.png)
+
+## 04.html
