@@ -73,3 +73,16 @@ html directive는 관리자 용도로만 사용하는 것이 적합함.
 ![alt text](image-4.png)
 
 ## 04.html
+
+양방향 적용 v-model
+
+![alt text](image-7.png)
+
+![alt text](image-8.png)
+![alt text](image-9.png)
+
+## 05.html
+
+![alt text](image-12.png)
+![alt text](image-10.png)
+![alt text](image-11.png)

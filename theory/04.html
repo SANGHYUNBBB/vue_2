@@ -10,8 +10,33 @@
       <h1>v-model</h1>
       <article>
         <h2>1. 기본 폼 요소 바인딩</h2>
-        <input type="text" v-model="message" />
+        <textarea type="text" v-model="message"></textarea>
+        <!-- 
+        양방향 적용
+        -->
         <p>입력한 값 - {{message}}</p>
+      </article>
+      <article>
+        <h2>체크박스</h2>
+        <input type="checkbox" v-model="isChecked" name="" id="test1" />
+        <label for="test1">체크박스1</label>
+        <!-- 체크박스는 boolean 타입으로 이해 -->
+        <p>
+          상태표시 :
+          <span
+            >{{isChecked ? "체크되었습니다." : "체크되지 않았습니다."}}</span
+          >
+        </p>
+      </article>
+      <article>
+        <h2>다중 체크박스</h2>
+        <input type="checkbox" value="sanghyun" v-model="checkNames" />
+        <label for="sanghyun">sanghyun</label>
+        <input type="checkbox" value="brown" v-model="checkNames" />
+        <label for="brown">brown</label>
+        <input type="checkbox" value="heeee" v-model="checkNames" />
+        <label for="heeee">heeee</label>
+        <p>선택된 이름: {{checkNames}}</p>
       </article>
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -23,6 +48,8 @@
         data() {
           return {
             message: '초기값',
+            isChecked: true,
+            checkNames: [],
           };
         },
       });

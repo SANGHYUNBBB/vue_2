@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>파일명</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>수식어</h1>
+      <article>
+        <h2>.lazy</h2>
+        <input type="text" v-model.lazy="message" />
+        <p>입력된 값 : {{message}}</p>
+      </article>
+      <article>
+        <h2>.number</h2>
+        <input type="text " v-model.number="num" />
+        <p>나이: {{num}}</p>
+      </article>
+      <article>
+        <h2>.trim</h2>
+        <input type="text" v-model.trim="text1" />
+        <p>{{text1}}</p>
+      </article>
+      <article>
+        <!-- 
+        한글로 작성시에 타이밍이 다소 느릴 수 있음.
+        한글은 여러 키의 조합이기 때문.
+        처리방법1. lazy: 포커스 이동 시 반영이 됌.
+        처리방법2. event 방법 적용.
+        @ : 이벤트 기호
+        @input=""
+        -->
+        <h2>실시간 반영방법</h2>
+        <input type="text" :value="text3" @input="onChange($event)" />
+        <!-- <input type="text" :value="text3" @input="e => onChange(e)" /> -->
+        <p>실시간 출력 공간:{{text3}}</p>
+        <input type="text" />
+        <!-- @chage, @input의 차이. @chage 포커스의 변경시에 적용! -->
+      </article>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="text/javascript">
+      const { createApp } = Vue;
+
+      let vm = createApp({
+        name: 'App',
+        data() {
+          return {
+            message: '',
+            num: 0,
+            text1: '',
+            text2: '',
+            text3: '',
+          };
+        },
+        //onChange라는 함수를 새로 등록할것이다. 라는 의미;
+
+        methods: {
+          //onchange : function() {}
+          // onchange : () => {this 불가능} 사용x
+          onChange(e) {
+            this.text3 = e.target.value;
+            //this를 사용해서 전역으로!
+          },
+        },
+      });
+      vm.mount('#app');
+    </script>
+  </body>
+</html>
