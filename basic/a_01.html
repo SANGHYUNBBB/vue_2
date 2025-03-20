@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>파일명</title>
+  </head>
+  <body>
+    <div id="app">{{ message }}</div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="text/javascript">
+      const { createApp, ref } = Vue; // 이것이 구조분해할당이다.
+
+      //   1. Vue 어플리케이션을 생성하겠다! 는 의미
+      //    2. setup 함수를 통해 반응형 상태를 생성;
+      // 반응형상태는 일반적 객체로 불가능.
+      // 이룰 위해서 ref가 필요
+      // ref: 반응형 상태를 생성하는 함수.
+      // setup함수에서 return을 등록;
+
+      //가상돔.
+      // 1. mount 함수를 통해 앱을 마운트(올린다)한다. -> 최초의 가상 DOM 생성!
+      // 2. Vue가 기존 가상돔과 비교해서 새로운 가상 돔을 만듦 -> 실제 dom에 반영!
+      // 3. 데이터(ref)가 변경됨 -> 새로운 가상돔 생성
+      // 4. Vue의 diffing 알고리즘이 변경된 부분 감지함. -> 변경된 부분만 실제 dom에 적용
+      // 5. 브라우저가 실제 dom을 화면에 업데이트 -> 랜더링
+      //
+      // 위에 등록이 되어있고, 반응형을 따로 등록해놓는거.
+      // 그래서 원래 돔과 가상돔을 비교하면서, 차이가 생기면 실시간으로 적용하는것.;
+
+      const app = createApp({
+        //setup() {}
+        // 컴포넌트가 초기화될 때 한 번만 실행됨.;
+        setup() {
+          //ref : 반응형 상태를 생성하는 함수.
+          const message = ref('Hello Vue!');
+
+          setTimeout(() => {
+            message.value = 'Updated Vue!!';
+          }, 3000);
+
+          // 반응형 객체
+          //  -> 객체의 변화를 감지하고, 그에 따라 자동으로 화면을 업데이트하는 특별객체;
+          return {
+            message,
+          };
+        },
+      });
+
+      const vm = app.mount('#app');
+    </script>
+  </body>
+</html>
