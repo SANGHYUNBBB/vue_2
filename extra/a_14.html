@@ -20,8 +20,8 @@
             -key 속성을 통해 각 항목에 고유한 식별자 부여
             (vue의 가상 dom 최적화임!)
             -->
-          <tr v-for="contact in contracts" :key="contact.no">
-            <td>{{contact.no}}</td>
+          <tr v-for="(contact, i) in contracts" :key="contact.no">
+            <td>{{i+1}}</td>
             <td>{{contact.name}}</td>
             <td>{{contact.tel}}</td>
           </tr>
